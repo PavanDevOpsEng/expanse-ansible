@@ -1,0 +1,32 @@
+---
+- name: Expance project with ansible
+  hosts: db
+  become: yes
+  login: 172.31.20.45
+  tasks: 
+  - name: install my sql
+    ansible.builtin.dnf:
+      name: mysql-server
+      state: latest
+
+  - name: start my sql
+    ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: yes
+    
+    # check password is already setup or not
+  - name: check DB connection
+    community.mysql.mysql_info:
+      login_user: root
+      login_password: ExpenseApp@1
+      login_host: "{{ login }}"
+      filter: version
+    ignore_errors: yes
+    register: mysql_connection_output
+
+  - name: print output
+    ansible.builtin.debug:
+      msg: "Output: {{mysql_connection_output}} "
+
+
