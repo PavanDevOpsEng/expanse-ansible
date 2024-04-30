@@ -2,7 +2,6 @@
 - name: Expance project with ansible
   hosts: db
   become: yes
-  login: 172.31.20.45
   tasks: 
   - name: install my sql
     ansible.builtin.dnf:
@@ -20,7 +19,7 @@
     community.mysql.mysql_info:
       login_user: root
       login_password: ExpenseApp@1
-      login_host: "{{ login }}"
+      login_host: 172.31.20.45
       filter: version
     ignore_errors: yes
     register: mysql_connection_output
