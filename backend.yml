@@ -3,7 +3,7 @@
   hosts: backend
   become: yes
   vars:
-    login_host: 172.31.26.141
+    login_password: ExpenseApp@1
   tasks: 
   - name: disable node js
     ansible.builtin.command: dnf module disable nodejs -y
