@@ -1,6 +1,7 @@
 ---
 - name: backend application with NodeJs
   hosts: backend
+  become: yes
   vars:
     login_host: 172.31.26.141
   tasks: 
